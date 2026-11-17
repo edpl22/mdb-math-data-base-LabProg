@@ -38,6 +38,27 @@ class ApiError extends Error {
     }
 }
 
+// registro das chamadas, exibido no inspetor (só para admin)
+const ApiLog = {
+    KEY: 'mdb_api_log',
+    MAX: 80,
+
+    read() {
+        try { return JSON.parse(sessionStorage.getItem(this.KEY) || '[]'); } catch { return []; }
+    },
+    add(entry) {
+        if (!Auth.isAdmin()) return;
+        const entries = this.read();
+        entries.push(entry);
+        try { sessionStorage.setItem(this.KEY, JSON.stringify(entries.slice(-this.MAX))); } catch { /* sem storage */ }
+        window.dispatchEvent(new CustomEvent('mdb:api-call'));
+    },
+    clear() {
+        try { sessionStorage.removeItem(this.KEY); } catch { /* sem storage */ }
+        window.dispatchEvent(new CustomEvent('mdb:api-call'));
+    },
+};
+
 function apiNameFor(baseUrl) {
     return baseUrl === CONFIG.PYTHON_API_BASE ? 'python' : 'java';
 }
@@ -62,6 +83,13 @@ async function request(baseUrl, path, { method = 'GET', body, auth = false, isFo
     }
 
     const api = apiNameFor(baseUrl);
+    const started = performance.now();
+    const log = (status, ok) => ApiLog.add({
+        api, method, path, status, ok,
+        ms: Math.round(performance.now() - started),
+        at: new Date().toISOString(),
+        page: window.location.pathname,
+    });
 
     let response;
     try {
@@ -71,9 +99,12 @@ async function request(baseUrl, path, { method = 'GET', body, auth = false, isFo
             body: isForm ? body : (body !== undefined ? JSON.stringify(body) : undefined),
         });
     } catch (networkError) {
+        log(0, false);
         const port = api === 'java' ? '8080' : '8000';
         throw new ApiError(0, `Não foi possível conectar à API ${api === 'java' ? 'Java' : 'Python'} (porta ${port}). Verifique se ela está rodando.`);
     }
+
+    log(response.status, response.ok);
 
     // token expirado
     if (response.status === 401 && auth && Auth.getToken()) {

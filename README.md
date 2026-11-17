@@ -201,6 +201,14 @@ curl -X POST http://localhost:8000/tools/mock-exam -H "Content-Type: application
 Para ver as chamadas acontecendo, abra a aba **Network** do navegador (F12): as que vão para
 `localhost:8080` são da API Java e as que vão para `localhost:8000` são da API Python.
 
+### Inspetor de requisições (somente administrador)
+
+Com um usuário **ADMIN** logado (por exemplo `admin@mdb.dev`), aperte **Ctrl+I** em qualquer
+página para abrir um painel lateral com as requisições feitas pelo site: qual API respondeu (Java
+ou Python), método, rota, status e tempo. Dá para filtrar por API e limpar a lista. **Ctrl+I** ou
+**Esc** fecham o painel. Para usuários comuns e visitantes o atalho não faz nada e as requisições
+não são registradas.
+
 ## Tratamento de erros
 
 As duas APIs respondem sempre em JSON e não caem com dados inválidos.
