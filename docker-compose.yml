@@ -26,6 +26,7 @@ services:
       postgres:
         condition: service_healthy
     environment:
+      SPRING_PROFILES_ACTIVE: postgres
       DB_URL: jdbc:postgresql://postgres:5432/${DB_NAME:-mdb}
       DB_USER: ${DB_USER:-mdb}
       DB_PASSWORD: ${DB_PASSWORD:-mdb}

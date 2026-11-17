@@ -69,19 +69,15 @@ nem PostgreSQL. Abra três terminais na pasta do projeto e suba as partes nesta 
 
 ```bash
 cd backend-java
-./mvnw spring-boot:run -Dspring-boot.run.profiles=local
+./mvnw spring-boot:run
 ```
 
-No Windows (PowerShell ou CMD):
+O mesmo comando funciona no PowerShell, no CMD (`mvnw spring-boot:run`) e no Linux/macOS.
 
-```bash
-mvnw.cmd spring-boot:run "-Dspring-boot.run.profiles=local"
-```
-
-O perfil `local` usa um banco H2 salvo em `backend-java/data/`. Na primeira vez o Maven baixa as
-dependências (demora alguns minutos) e o Flyway cria as tabelas com os dados de exemplo: 7 áreas,
-15 tags, 20 problemas e 2 usuários. A API está pronta quando aparecer
-`Started MdbBackendApplication`.
+Por padrão a API usa um banco H2 salvo em `backend-java/data/`, então não é preciso instalar
+banco nenhum. Na primeira vez o wrapper baixa o Maven e as dependências (demora alguns minutos) e
+o Flyway cria as tabelas com os dados de exemplo: 7 áreas, 15 tags, 20 problemas e 2 usuários. A
+API está pronta quando aparecer `Started MdbBackendApplication`.
 
 - Teste: http://localhost:8080/api/health
 - Swagger: http://localhost:8080/swagger-ui.html
@@ -89,14 +85,26 @@ dependências (demora alguns minutos) e o Flyway cria as tabelas com os dados de
 
 ### 2. API Python (porta 8000)
 
+No Windows (PowerShell ou CMD):
+
 ```bash
 cd backend-python
 python -m venv .venv
-.venv\Scripts\activate            # Windows
-source .venv/bin/activate         # Linux/macOS
-pip install -r requirements.txt
-flask --app app.main run --port 8000
+.venv\Scripts\python -m pip install -r requirements.txt
+.venv\Scripts\python -m flask --app app.main run --port 8000
 ```
+
+No Linux/macOS:
+
+```bash
+cd backend-python
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python -m flask --app app.main run --port 8000
+```
+
+Assim não é preciso ativar o ambiente virtual (no PowerShell, o `activate` costuma ser bloqueado
+pela política de execução de scripts).
 
 Teste: http://localhost:8000/health (o campo `javaApi` mostra `ok` quando a API Java está no ar).
 
@@ -208,8 +216,11 @@ As duas APIs respondem sempre em JSON e não caem com dados inválidos.
 ## Testes
 
 ```bash
-cd backend-java && ./mvnw test      # 35 testes
-cd backend-python && pytest -q      # 27 testes
+cd backend-java
+./mvnw test                                   # 35 testes
+
+cd backend-python
+.venv\Scripts\python -m pytest -q             # 27 testes (Linux/macOS: .venv/bin/python -m pytest -q)
 ```
 
 ## Usuários de teste

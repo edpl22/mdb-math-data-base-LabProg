@@ -1,6 +1,9 @@
 spring:
   application:
     name: mdb-backend
+  profiles:
+    # sem perfil informado, usa o H2 local (application-local.yml)
+    default: local
   datasource:
     url: ${DB_URL:jdbc:postgresql://localhost:5432/mdb}
     username: ${DB_USER:mdb}
