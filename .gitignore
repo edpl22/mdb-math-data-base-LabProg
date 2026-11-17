@@ -1,0 +1,41 @@
+# Ambiente
+.env
+*.local
+
+# Java / Maven
+backend-java/target/
+backend-java/.mvn/wrapper/maven-wrapper.jar
+*.class
+
+# Python
+backend-python/.venv/
+backend-python/__pycache__/
+backend-python/**/__pycache__/
+backend-python/.pytest_cache/
+*.pyc
+
+# Node (se usado por alguma ferramenta auxiliar)
+node_modules/
+
+# Android / Gradle
+mobile/.gradle/
+mobile/build/
+mobile/app/build/
+mobile/local.properties
+mobile/*.iml
+mobile/.idea/
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Banco H2 do perfil "local" da API Java
+backend-java/data/

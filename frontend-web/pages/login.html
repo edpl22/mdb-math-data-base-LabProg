@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Entrar | MDB</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+<header id="app-header" class="site-header"></header>
+
+<main class="container page">
+    <div class="form-panel">
+        <div class="flex-between">
+            <h1 class="mb-0">Entrar</h1>
+
+        </div>
+        <p class="hint-text">Entre com seu e-mail e senha para acessar sua conta.</p>
+        <div id="form-alert"></div>
+        <form id="login-form">
+            <div class="form-group">
+                <label class="field-label" for="email">Email</label>
+                <input type="email" id="email" autocomplete="username" required />
+            </div>
+            <div class="form-group">
+                <label class="field-label" for="password">Senha</label>
+                <input type="password" id="password" autocomplete="current-password" required />
+            </div>
+            <button class="btn btn-block" type="submit">Entrar</button>
+        </form>
+        <p class="mt-5 text-center">Não tem conta? <a href="/pages/register.html">Cadastre-se</a></p>
+
+        <div class="demo-accounts">
+            <div class="label-mono">Contas de demonstração</div>
+            <div class="demo-buttons">
+                <button type="button" class="btn btn-secondary btn-sm" data-demo="admin@mdb.dev" data-pass="admin123">Administrador</button>
+                <button type="button" class="btn btn-secondary btn-sm" data-demo="demo@mdb.dev" data-pass="demo123">Usuário comum</button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="site-footer" id="app-footer"></footer>
+
+<script src="/js/config.js"></script>
+<script src="/js/api.js"></script>
+<script src="/js/ui.js"></script>
+<script src="/js/nav.js"></script>
+<script>window.MDB_ACTIVE_PAGE = '';</script>
+<script src="/js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">MDB</string>
+
+    <string name="login_title">Entrar</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Senha</string>
+    <string name="login_button">Entrar</string>
+    <string name="no_account">Não tem conta? Cadastre-se</string>
+    <string name="dev_credentials_hint">Dev: admin@mdb.dev / admin123 · demo@mdb.dev / demo123</string>
+
+    <string name="register_title">Criar conta</string>
+    <string name="name_hint">Nome</string>
+    <string name="register_button">Criar conta</string>
+
+    <string name="catalog_title">Catálogo de problemas</string>
+    <string name="search_hint">Buscar por título ou enunciado</string>
+    <string name="filter_button">Filtrar</string>
+
+    <string name="show_hint">Mostrar dica</string>
+    <string name="hide_hint">Ocultar dica</string>
+    <string name="show_solution">Mostrar solução</string>
+    <string name="hide_solution">Ocultar solução</string>
+
+    <string name="status_favorite">★ Favoritar</string>
+    <string name="status_want_to_do">📌 Quero fazer</string>
+    <string name="status_done">✅ Já fiz</string>
+
+    <string name="profile_title">Meu perfil</string>
+    <string name="tab_favorites">Favoritos</string>
+    <string name="tab_want_to_do">Quero fazer</string>
+    <string name="tab_done">Já fiz</string>
+
+    <string name="logout">Sair</string>
+</resources>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meu perfil | MDB</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <script>
+        window.MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] } };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" defer></script>
+</head>
+<body>
+<header id="app-header" class="site-header"></header>
+
+<main class="container page">
+    <div class="page-title-row">
+        <div>
+            <h1 class="mb-0" id="profile-title">Meu perfil</h1>
+            <p class="text-secondary mb-0" id="profile-sub"></p>
+        </div>
+
+    </div>
+
+    <div class="stats-kpis" id="profile-kpis"></div>
+
+    <div class="tabs" role="tablist">
+        <button class="tab-btn active" data-tab="favorites" role="tab" aria-selected="true">Favoritos <span class="tab-count" id="count-favorites"></span></button>
+        <button class="tab-btn" data-tab="wantToDo" role="tab" aria-selected="false">Quero resolver <span class="tab-count" id="count-wantToDo"></span></button>
+        <button class="tab-btn" data-tab="done" role="tab" aria-selected="false">Resolvidos <span class="tab-count" id="count-done"></span></button>
+    </div>
+
+    <div class="tab-panel active" id="panel-favorites" role="tabpanel">
+        <div id="grid-favorites"><div class="loading-row"><span class="spinner"></span><span>Carregando…</span></div></div>
+    </div>
+    <div class="tab-panel" id="panel-wantToDo" role="tabpanel">
+        <div id="grid-wantToDo"></div>
+    </div>
+    <div class="tab-panel" id="panel-done" role="tabpanel">
+        <div id="grid-done"></div>
+    </div>
+</main>
+
+<footer class="site-footer" id="app-footer"></footer>
+
+<script src="/js/config.js"></script>
+<script src="/js/api.js"></script>
+<script src="/js/ui.js"></script>
+<script src="/js/nav.js"></script>
+<script>window.MDB_ACTIVE_PAGE = 'profile';</script>
+<script src="/js/profile.js"></script>
+</body>
+</html>

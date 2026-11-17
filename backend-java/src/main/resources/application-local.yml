@@ -1,0 +1,10 @@
+# Perfil local com H2 em arquivo (sem PostgreSQL)
+spring:
+  datasource:
+    url: jdbc:h2:file:./data/mdb-local;MODE=PostgreSQL;AUTO_SERVER=TRUE
+    username: sa
+    password: ""
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none

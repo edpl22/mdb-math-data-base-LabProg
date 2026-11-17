@@ -1,0 +1,6 @@
+# Normaliza fins de linha: LF no repositorio (scripts shell quebram com CRLF no Linux/macOS/Docker)
+* text=auto eol=lf
+*.cmd text eol=crlf
+*.bat text eol=crlf
+*.jar binary
+*.png binary

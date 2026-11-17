@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="MDB: catálogo colaborativo de problemas matemáticos com busca, filtros, sorteio e gerador de simulados." />
+    <title>MDB - Math Data Base</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <script>
+        window.MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] } };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" defer></script>
+</head>
+<body>
+<header id="app-header" class="site-header"></header>
+
+<main class="container page">
+    <div class="page-intro">
+        <div class="kicker">Math Data Base</div>
+        <h1>Explore problemas de matemática</h1>
+        <p>Um catálogo estruturado de problemas: busque, filtre por área, tópico e dificuldade,
+            avalie e monte listas de exercícios. Não é um fórum: sem discussões, só problemas bem
+            organizados.</p>
+        <div class="home-search">
+            <form id="home-search-form" class="home-search-row" role="search">
+                <input type="search" id="home-search-input" placeholder="Buscar problemas, tópicos, áreas..." autocomplete="off" aria-label="Buscar problemas" />
+                <button class="btn" type="submit">Buscar</button>
+            </form>
+        </div>
+    </div>
+
+    <section class="section-block" aria-labelledby="stats-heading">
+        <div class="section-heading">
+            <h2 id="stats-heading">O catálogo em números</h2>
+        </div>
+        <div id="catalog-stats">
+            <div class="loading-row"><span class="spinner"></span><span>Calculando estatísticas…</span></div>
+        </div>
+    </section>
+
+    <section class="section-block">
+        <div class="home-grid-actions">
+            <div class="action-block">
+                <div class="flex-between"><span class="label-mono">Sorteio</span></div>
+                <h3>Problema aleatório</h3>
+                <p>Sorteia um problema do catálogo. No catálogo você também pode sortear respeitando os filtros escolhidos.</p>
+                <div><button class="btn btn-secondary" id="random-btn">Sortear um problema</button></div>
+            </div>
+            <div class="action-block">
+                <div class="flex-between"><span class="label-mono">Simulado</span></div>
+                <h3>Gerar uma lista de exercícios</h3>
+                <p>Escolha quantidade, área e faixa de dificuldade e receba uma prova pronta para imprimir, com gabarito.</p>
+                <div><a class="btn btn-secondary" href="/pages/mock-exam.html">Abrir gerador</a></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-block">
+        <div class="section-heading">
+            <h2>Áreas</h2>
+        </div>
+        <div class="index-list" id="area-index">
+            <div class="loading-row"><span class="spinner"></span><span>Carregando áreas…</span></div>
+        </div>
+    </section>
+
+    <section class="section-block">
+        <div class="section-heading">
+            <h2>Adicionados recentemente</h2>
+            <a class="see-all" href="/pages/catalog.html">Ver todos →</a>
+        </div>
+        <div id="recent-problems">
+            <div class="loading-row"><span class="spinner"></span><span>Carregando problemas…</span></div>
+        </div>
+    </section>
+
+    <section class="section-block">
+        <div class="section-heading"><h2>Explorar por dificuldade</h2></div>
+        <div class="difficulty-explore" id="difficulty-explore"></div>
+    </section>
+</main>
+
+<footer class="site-footer" id="app-footer"></footer>
+
+<script src="/js/config.js"></script>
+<script src="/js/api.js"></script>
+<script src="/js/ui.js"></script>
+<script src="/js/nav.js"></script>
+<script>window.MDB_ACTIVE_PAGE = 'home';</script>
+<script src="/js/home.js"></script>
+</body>
+</html>

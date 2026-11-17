@@ -1,0 +1,8 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.MDB" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/mdb_primary</item>
+        <item name="colorPrimaryDark">@color/mdb_primary_dark</item>
+        <item name="colorAccent">@color/mdb_accent</item>
+        <item name="android:windowBackground">@color/mdb_background</item>
+    </style>
+</resources>

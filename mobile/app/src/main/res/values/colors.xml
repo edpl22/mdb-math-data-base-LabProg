@@ -1,0 +1,12 @@
+<resources>
+    <color name="mdb_primary">#2F3E9E</color>
+    <color name="mdb_primary_dark">#232F7D</color>
+    <color name="mdb_accent">#E08A3C</color>
+    <color name="mdb_background">#F6F7FB</color>
+    <color name="mdb_surface">#FFFFFF</color>
+    <color name="mdb_text">#1C2333</color>
+    <color name="mdb_text_muted">#5B6478</color>
+    <color name="mdb_border">#DDE1EC</color>
+    <color name="mdb_success">#1F8A54</color>
+    <color name="mdb_danger">#C23B3B</color>
+</resources>

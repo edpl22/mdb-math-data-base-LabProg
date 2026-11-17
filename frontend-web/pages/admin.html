@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin — MDB</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+<header id="app-header" class="site-header"></header>
+
+<main class="container page">
+    <div class="page-title-row"><h1 class="mb-0">Administração</h1></div>
+
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <div class="admin-nav-title">Seções</div>
+            <nav class="admin-nav" id="admin-nav">
+                <button data-panel="overview" class="active">Visão geral</button>
+                <button data-panel="problems">Problemas</button>
+                <button data-panel="areas">Áreas</button>
+                <button data-panel="tags">Tópicos</button>
+                <button data-panel="csv-import">Importar CSV</button>
+                <button data-panel="csv-export">Exportar CSV</button>
+            </nav>
+        </aside>
+
+        <div class="admin-content">
+
+            <!-- Overview -->
+            <section class="admin-panel active" id="panel-overview">
+                <div class="metadata-row" style="border-top: none;" id="overview-stats">
+                    <div class="loading-row"><span class="spinner"></span><span>Carregando…</span></div>
+                </div>
+            </section>
+
+            <!-- Problems -->
+            <section class="admin-panel" id="panel-problems">
+                <div class="admin-panel-header">
+
+                    <p class="mb-0 text-tertiary label-mono" id="problems-count"></p>
+                    <button class="btn" id="new-problem-btn">+ Novo problema</button>
+                </div>
+
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                        <tr><th>ID</th><th>Título</th><th>Área</th><th>Dificuldade</th><th>Atualizado</th><th>Ações</th></tr>
+                        </thead>
+                        <tbody id="problems-table-body">
+                        <tr><td colspan="6">Carregando…</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="form-panel wide mt-5 hidden" id="problem-form-card">
+                    <h2 id="problem-form-title">Novo problema</h2>
+                    <div id="problem-form-alert"></div>
+                    <form id="problem-form">
+                        <input type="hidden" id="p-id" />
+                        <div class="form-group">
+                            <label class="field-label" for="p-title">Título</label>
+                            <input type="text" id="p-title" required />
+                        </div>
+                        <div class="form-group">
+                            <label class="field-label" for="p-statement">Enunciado (aceita LaTeX com $...$)</label>
+                            <textarea id="p-statement" required></textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="field-label" for="p-area">Área</label>
+                                <select id="p-area" required></select>
+                            </div>
+                            <div class="form-group">
+                                <label class="field-label">Dificuldade inicial</label>
+                                <div class="difficulty-select" id="p-difficulty-select"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="field-label" for="p-tags">Tópicos (separados por vírgula)</label>
+                            <input type="text" id="p-tags" placeholder="equações, fatoração" />
+                        </div>
+                        <div class="form-group">
+                            <label class="field-label" for="p-hint">Dica</label>
+                            <textarea id="p-hint" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="field-label" for="p-solution">Solução</label>
+                            <textarea id="p-solution" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="field-label" for="p-source">Fonte (opcional)</label>
+                            <input type="text" id="p-source" />
+                        </div>
+                        <div class="form-actions">
+                            <button class="btn btn-secondary" type="button" id="cancel-problem-form">Cancelar</button>
+                            <button class="btn" type="submit">Salvar problema</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Areas -->
+            <section class="admin-panel" id="panel-areas">
+                <div class="form-panel">
+                    <h2>Nova área</h2>
+                    <div id="area-form-alert"></div>
+                    <form id="area-form">
+                        <div class="form-group">
+                            <label class="field-label" for="area-name">Nome da área</label>
+                            <input type="text" id="area-name" required />
+                        </div>
+                        <button class="btn btn-block" type="submit">Adicionar área</button>
+                    </form>
+                </div>
+                <div class="mt-5">
+                    <h2>Áreas existentes</h2>
+                    <div class="index-list" id="areas-list"></div>
+                </div>
+            </section>
+
+            <!-- Tags (leitura) -->
+            <section class="admin-panel" id="panel-tags">
+                <p class="text-secondary">Os tópicos são criados automaticamente quando usados em um
+                    problema. Esta lista é somente leitura.</p>
+                <div class="tag-list" id="tags-list"></div>
+            </section>
+
+            <!-- CSV Import -->
+            <section class="admin-panel" id="panel-csv-import">
+                <div class="form-panel wide">
+                    <div class="flex-between"><h2 class="mb-0">Importar problemas de um CSV</h2></div>
+                    <p class="hint-text">Cabeçalho esperado: <code>id,titulo,enunciado,area,dificuldade,dica,solucao,fonte</code>
+                        ("id" é ignorado; a "area" precisa existir). Linhas inválidas são reportadas sem
+                        interromper as válidas. Exemplo pronto: <code>database/sample_import.csv</code>.</p>
+                    <div id="import-alert"></div>
+                    <form id="import-form">
+                        <div class="form-group">
+                            <input type="file" id="csv-file" accept=".csv" required />
+                        </div>
+                        <button class="btn" type="submit">Importar CSV</button>
+                    </form>
+                    <div id="import-results" class="mt-3"></div>
+                </div>
+            </section>
+
+            <!-- CSV Export -->
+            <section class="admin-panel" id="panel-csv-export">
+                <div class="form-panel wide">
+                    <div class="flex-between"><h2 class="mb-0">Exportar catálogo para CSV</h2></div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="field-label" for="export-area">Área (opcional)</label>
+                            <select id="export-area"><option value="">Todas as áreas</option></select>
+                        </div>
+                    </div>
+                    <button class="btn" id="export-btn">Exportar CSV</button>
+                </div>
+            </section>
+
+        </div>
+    </div>
+</main>
+
+<footer class="site-footer" id="app-footer"></footer>
+
+<script src="/js/config.js"></script>
+<script src="/js/api.js"></script>
+<script src="/js/ui.js"></script>
+<script src="/js/nav.js"></script>
+<script>window.MDB_ACTIVE_PAGE = 'admin';</script>
+<script src="/js/admin.js"></script>
+</body>
+</html>

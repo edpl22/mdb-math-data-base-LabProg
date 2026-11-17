@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simulado | MDB</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <script>
+        window.MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] } };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" defer></script>
+</head>
+<body>
+<header id="app-header" class="site-header"></header>
+
+<main class="container page">
+    <div class="no-print">
+        <div class="page-title-row">
+            <div>
+                <h1 class="mb-0">Gerar simulado</h1>
+                <p class="text-secondary mb-0" style="max-width: 640px;">Escolha a quantidade, a área e a faixa
+                    de dificuldade. O sistema sorteia, sem repetição, um conjunto compatível de problemas
+                    e monta uma prova pronta para imprimir, com gabarito separado.</p>
+            </div>
+        </div>
+
+        <form class="form-panel wide" id="mock-exam-form" style="margin: var(--space-6) 0;" novalidate>
+            <div class="flex-between" style="margin-bottom: var(--space-4);">
+                <span class="label-mono">Configuração</span>
+
+            </div>
+            <div id="form-alert"></div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="field-label" for="exam-title">Título da prova</label>
+                    <input type="text" id="exam-title" value="Lista de exercícios" maxlength="80" />
+                </div>
+                <div class="form-group" style="max-width: 200px;">
+                    <label class="field-label" for="quantity">Nº de problemas</label>
+                    <input type="number" id="quantity" min="1" max="100" value="5" required />
+                </div>
+                <div class="form-group">
+                    <label class="field-label" for="area">Área</label>
+                    <select id="area"><option value="">Todas as áreas</option></select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <span class="field-label">Dificuldade mínima</span>
+                    <div class="difficulty-select" id="min-difficulty-select"></div>
+                </div>
+                <div class="form-group">
+                    <span class="field-label">Dificuldade máxima</span>
+                    <div class="difficulty-select" id="max-difficulty-select"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="flex-between">
+                    <span class="field-label">Problemas disponíveis por dificuldade</span>
+
+                </div>
+                <div class="composition-preview" id="composition-preview"></div>
+            </div>
+
+            <div class="form-actions">
+                <span class="hint-text mb-0" id="pool-total-hint"></span>
+                <button class="btn" type="submit" id="generate-btn">Gerar simulado</button>
+            </div>
+        </form>
+    </div>
+
+    <section class="hidden" id="exam-results-section" aria-live="polite">
+        <div class="exam-toolbar no-print">
+            <div>
+                <h2 class="mb-0">Simulado gerado</h2>
+                <span class="hint-text" id="exam-summary"></span>
+            </div>
+            <div class="exam-toolbar-actions">
+                <label class="switch"><input type="checkbox" id="toggle-answers" /> Mostrar gabarito</label>
+                <button class="btn btn-secondary btn-sm" type="button" id="regenerate-btn">Sortear de novo</button>
+                <button class="btn btn-sm" type="button" id="print-btn">Imprimir / PDF</button>
+            </div>
+        </div>
+        <div id="exam-results"></div>
+    </section>
+</main>
+
+<footer class="site-footer no-print" id="app-footer"></footer>
+
+<script src="/js/config.js"></script>
+<script src="/js/api.js"></script>
+<script src="/js/ui.js"></script>
+<script src="/js/nav.js"></script>
+<script>window.MDB_ACTIVE_PAGE = 'mock-exam';</script>
+<script src="/js/mock-exam.js"></script>
+</body>
+</html>

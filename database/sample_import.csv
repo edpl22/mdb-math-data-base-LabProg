@@ -1,0 +1,6 @@
+id,titulo,enunciado,area,dificuldade,dica,solucao,fonte
+1,"Simple factoring","Factor the expression $x^2 + 7x + 12$.","Algebra",2,"Look for two numbers that add to 7 and multiply to 12.","$x^2+7x+12=(x+3)(x+4)$.","CSV import example"
+2,"Perimeter of a rectangle","A rectangle has base 8 cm and height 5 cm. Find its perimeter.","Geometry",1,"The perimeter is the sum of all sides.","$P = 2(8+5) = 26$ cm.","CSV import example"
+3,"Counting with repetition","How many 3-letter license plates (repetition allowed) exist using a 26-letter alphabet?","Combinatorics",2,"Each position has 26 independent options.","$26^3 = 17576$ plates.","CSV import example"
+4,"Invalid difficulty (test row)","This statement exists only to demonstrate error validation.","Algebra",9,"N/A","N/A","Intentionally invalid row"
+5,"Missing required field (test row)","","Algebra",3,"N/A","N/A","Intentionally invalid row"
